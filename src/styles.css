@@ -1,1 +1,24 @@
 /* You can add global styles to this file, and also import other style files */
+body{ background: url(https://gw.alipayobjects.com/zos/rmsportal/TVYTbAXWheQpRcWDaDMu.svg) no-repeat;
+    background-attachment: fixed; background-position: center center; background-size: 100% 100%;}
+::-webkit-scrollbar{display:none;}
+
+.container{ display: flex; justify-content: center; height: 100%; align-items: center; flex-direction: column; }
+.item-column, .container .item-column { display: flex; justify-content: center; }
+
+
+/**
+    数据可视化布局样式
+*/
+.visual-layer{ display: flex; justify-content: space-evenly;flex-direction: row; flex-wrap: wrap;}
+
+/**
+    数据可视化组件样式
+*/
+.visual-graphy { margin: 0 auto; }
+.visual-graphy h1 { text-align: center;}
+
+.visual-graphy-small{ width: 400px;}
+.visual-graphy-small h1 { text-align: center;}
+
+.visual-graphy-big{ width: 600px; }

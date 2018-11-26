@@ -1,0 +1,48 @@
+<div *ngIf='personAccounts'>
+  <nz-table [nzPageSize]='currentPageSize'  [nzPageIndex]='currentPageIndex' [nzShowQuickJumper]='true' [nzLoading]='isLoading' [nzPageSizeOptions]='[5, 10, 15, 20]' [nzShowSizeChanger]='true' [nzTotal]='personAccounts.length' [nzPageSize]='page.size' #basicTable [nzData]="personAccounts">
+    <thead>
+      <tr>
+        <th *ngFor='let c of columns; let i = index'>{{c}}</th>
+      </tr>
+    </thead>
+    <tbody>
+      <tr *ngFor="let personAccount of basicTable.data">
+        <td>{{personAccount.username}}</td>
+        <td>{{personAccount.password}}</td>
+        <td>{{personAccount.canUse ? personAccount.canUse : '未知'}}</td>
+        <td>{{personAccount.phonenumber}}</td>
+        <td>{{personAccount.createTime}}</td>
+        <td>{{personAccount.personAccountGeneralType.name}}</td>
+        <td>
+          <button nz-button nzType="primary" (click)="preUpdate(personAccount ,tplTitle, tplContent, tplFooter)">
+            <span>编辑</span>
+          </button>
+        </td>
+        <td>
+          <!-- <a>Action 一 {{data.name}}</a>
+          <nz-divider nzType="vertical"></nz-divider> -->
+          <a (click)='deleteOne( personAccount.id )'>Delete</a>
+        </td>
+      </tr>
+    </tbody>
+  </nz-table>
+</div>
+
+<!--对话框模板-->
+<ng-template  #tplTitle>
+  <span>账户信息更新</span>
+</ng-template>
+<ng-template #tplContent>
+    <app-person-account-add [isUpdate]='true' [_personAccount]='updatingPersonAccount'></app-person-account-add>
+</ng-template>
+<ng-template #tplFooter>
+  <button nz-button nzType="primary" [disabled]='!updatingPersonAccount.username || !updatingPersonAccount.password' (click)="update()" [nzLoading]="isEditting">确定</button>
+  <button nz-button nzType="primary" (click)="cancel()" [nzLoading]="isEditting">取消</button>
+</ng-template>
+<!--对话框模板结束-->
+<div class='visual-layer' *ngIf='accountDistribution && accountDistribution.data.length > 0'>
+    <app-pie *ngIf='pieElementId && accountUsePercent' [data]='accountUsePercent' [title]='accountUsePercentTitle' [elementId]='pieElementId'></app-pie>
+    <app-bar-graph *ngIf='accountDistribution' [barGraphData]='accountDistribution' ></app-bar-graph>
+</div>
+
+

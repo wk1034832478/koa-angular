@@ -1,0 +1,29 @@
+<div class='container'>
+  <nz-carousel nzAutoPlay [nzEffect]="'fade'">
+    <div nz-carousel-content *ngFor="let image of images">
+      <img class='gs' src="/assets/images/{{image}}" />
+    </div>
+  </nz-carousel>
+  <div class='carousel-buttons' style='height: 100%; width: 100%; position: absolute; left: 0px; top: 0px; display: flex; justify-content: center; align-items: center;'>
+      <button nz-button (click)="open()" nzType="primary" nzGhost>进入</button>
+  </div>
+</div>
+
+
+<!--抽屉-导航 取消导航位置-->
+<!-- <nz-radio-group [(ngModel)]="placement">
+  <label nz-radio nzValue="top">top</label>
+  <label nz-radio nzValue="right">right</label>
+  <label nz-radio nzValue="bottom">bottom</label>
+  <label nz-radio nzValue="left">left</label>
+</nz-radio-group> -->
+<nz-drawer nzWidth='128px' [nzClosable]="false" [nzVisible]="visible"
+ [nzPlacement]="placement"  (nzOnClose)="close()">
+  <div *ngFor='let menu of menues' class='menu' style='display: flex; justify-content: center; align-items: center; flex-direction: column;'>
+    <img [src]='menu.src' />
+    <div>
+        <button [routerLink]='menu.routerLink' nz-button nzType="primary" nzGhost>{{menu.title}}</button>
+    </div>
+  </div>
+</nz-drawer>
+<!--抽屉-导航-->

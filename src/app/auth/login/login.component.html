@@ -1,0 +1,42 @@
+<div class='container'>
+    <!--头像-->
+    <div class='item'>
+        <nz-avatar [nzShape]="'square'" [nzSize]="'large'" [nzIcon]="'anticon anticon-user'"></nz-avatar>
+    </div>
+    <div class='item' *ngIf='isSuccess'>
+        <nz-alert nzType="success" nzMessage="{{msg}}" nzShowIcon></nz-alert>
+    </div>
+    <div class='item' *ngIf='isAuthenticated'>
+        <nz-alert nzType="info" nzMessage="{{msg}}" nzShowIcon></nz-alert>
+    </div>
+    <div class='item' *ngIf='badUser'>
+        <nz-alert nzType="info" nzMessage="{{msg}}" nzShowIcon></nz-alert>
+    </div>
+    <div class='item' *ngIf='isError'>
+        <nz-alert nzType="error" nzMessage="{{msg}}" nzShowIcon></nz-alert>
+    </div>
+    <div class='item'  *ngIf= ' account.username && account.username.length < 4 '>
+        <nz-alert nzType="error" nzMessage="请输入有效的用户名，长度至少为4位" nzShowIcon></nz-alert>
+    </div>
+    <div class='item'  *ngIf= ' account.password && account.password.length < 4'>
+        <nz-alert nzType="error" nzMessage="请输入有效的密码，长度至少为4位" nzShowIcon></nz-alert>
+    </div>
+    <div class='item'>
+        <nz-input-group [nzSuffix]="suffixTemplate1" [nzPrefix]="prefixTemplate1">
+            <input  type="text" nz-input placeholder="请输入用户名" [(ngModel)]="account.username">
+        </nz-input-group>
+        <ng-template #prefixTemplate1><i nz-icon type="user" theme="outline"></i></ng-template>
+        <ng-template #suffixTemplate1><i nz-icon type="close-circle" (click)="account.username=null" *ngIf="account.username"></i></ng-template>
+    </div>
+    <div class='item'>
+        <nz-input-group [nzSuffix]="suffixTemplate2" [nzPrefix]="prefixTemplate2">
+            <input type="password" nz-input placeholder="请输入密码" [(ngModel)]="account.password">
+        </nz-input-group>
+        <ng-template #prefixTemplate2><i nz-icon type="lock" theme="outline"></i></ng-template>
+        <ng-template #suffixTemplate2><i nz-icon type="close-circle" (click)="account.username=null" *ngIf="account.password"></i></ng-template>
+    </div>
+    <div class='item' style='display: flex; justify-content: space-evenly;'>
+        <button [disabled]='!(account.username) || account.username.length < 4 || !(account.password) || account.password.length < 4' nz-button nzType="primary" (click)="login()" [nzLoading]="isLoginning">登陆</button>
+        <button routerLink='/account-manage' nz-button nzType="primary"  [nzLoading]="isLoginning">注册</button>
+    </div>
+</div>

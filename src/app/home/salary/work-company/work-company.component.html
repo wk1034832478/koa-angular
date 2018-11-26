@@ -1,0 +1,106 @@
+
+<nz-collapse [nzBordered]="false">
+    <nz-collapse-panel [nzHeader]="addPanel.name" [nzActive]="addPanel.active"
+      [ngStyle]="addPanel.customStyle">
+      <!--公司信息表单-->
+      <form *ngIf='validateForm' nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">公司名</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <input nz-input formControlName="name" placeholder="请输入公司名" id="name" [(ngModel)]='workCompany.name'>
+              <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">请输入公司名</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+        
+          <nz-form-item>
+              <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="address">公司地址</nz-form-label>
+              <nz-form-control [nzSm]="14" [nzXs]="24">
+                <input nz-input formControlName="address" placeholder="请输入公司地址" id="address" [(ngModel)]='workCompany.address'>
+                <nz-form-explain *ngIf="validateForm.get('address').dirty && validateForm.get('address').errors">请输入地址</nz-form-explain>
+              </nz-form-control>
+            </nz-form-item>
+      
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired  nzFor="enterDate">入职时间</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                  <nz-date-picker [nzFormat]='dateFormat' [(ngModel)]='workCompany.enterDate' name="date-picker-success"  formControlName="enterDate" style="width: 100%"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+      
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24"   nzFor="leaveDate">离职时间</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                  <nz-date-picker [nzFormat]='dateFormat' [(ngModel)]='workCompany.leaveDate' name="date-picker-success"  formControlName="leaveDate" style="width: 100%"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+      
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="isWorking" nzRequired nzRequired>是否在职</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                  <nz-select id="isWorking" formControlName="isWorking"  [(ngModel)]='workCompany.isWorking' nzPlaceHolder="请选择是否在职" >
+                    <nz-option nzValue="是" nzLabel="在职" ></nz-option>
+                    <nz-option nzValue="否" nzLabel="已离职"></nz-option>
+                  </nz-select>
+                  <nz-form-explain *ngIf="validateForm.get('isWorking').dirty && validateForm.get('isWorking').errors">请选择是否在职</nz-form-explain>
+                </nz-form-control>
+            </nz-form-item>
+          
+          <nz-form-item nz-row style="margin-bottom:8px;display: flex; justify-content: center;" >
+            <nz-form-control [nzSpan]="7"  style='text-align: center;' >
+              <button  [nzLoading]="isLoading" nz-button [disabled]='validateForm.invalid' nzType="primary">确定</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+    </nz-collapse-panel>
+
+    <nz-collapse-panel [nzHeader]="salaryPanel.name" [nzActive]="addPanel.active"
+      [ngStyle]="salaryPanel.customStyle">
+      <!--
+        薪水信息表单
+      id?: number;
+      mount?: number;
+      deliverDate?: Date;
+      workCompany?: WorkCompany;
+      account?: Account;
+      -->
+      <form *ngIf='salaryValidateForm && workCompanies' nz-form [formGroup]="salaryValidateForm" (ngSubmit)="submitSalaryForm()">
+          <nz-form-item>
+            <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="mount">请输入薪水</nz-form-label>
+            <nz-form-control [nzSm]="14" [nzXs]="24">
+              <input nz-input formControlName="mount" placeholder="请输入薪水" id="mount" [(ngModel)]='salary.mount'>
+              <nz-form-explain *ngIf="salaryValidateForm.get('mount').dirty && salaryValidateForm.get('mount').errors">请输入薪水</nz-form-explain>
+            </nz-form-control>
+          </nz-form-item>
+      
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired  nzFor="deliverDate">薪水发放时间</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                  <nz-date-picker [nzFormat]='dateFormat' [(ngModel)]='salary.deliverDate' name="date-picker-success"  formControlName="deliverDate" style="width: 100%"></nz-date-picker>
+                </nz-form-control>
+            </nz-form-item>
+            
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="cid" nzRequired >薪水发放时间</nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                  <nz-select id="cid" formControlName="cid"  [(ngModel)]='salary.workCompany.id' nzPlaceHolder="选择在职公司" >
+                    <nz-option *ngFor='let wc of workCompanies' [nzValue]='wc.id' [nzLabel]="wc.name" ></nz-option> <!--循环遍历-->
+                  </nz-select>
+                  <nz-form-explain *ngIf="salaryValidateForm.get('cid').dirty && salaryValidateForm.get('cid').errors">请选择是否在职</nz-form-explain>
+                </nz-form-control>
+            </nz-form-item> 
+
+            <nz-form-item>
+                <nz-form-label [nzSm]="6" [nzXs]="24" ></nz-form-label>
+                <nz-form-control [nzSm]="14" [nzXs]="24" >
+                    <a nz-button nzType="primary" (click)="loadWorkingCompany()" [nzLoading]="isLoading"><i nz-icon type="poweroff"></i>刷新在职公司列表</a>
+                </nz-form-control>
+            </nz-form-item>
+          
+          <nz-form-item nz-row style="margin-bottom:8px;display: flex; justify-content: center;" >
+            <nz-form-control [nzSpan]="7"  style='text-align: center;' >
+              <button  [nzLoading]="isLoading" nz-button [disabled]='salaryValidateForm.invalid' nzType="primary">确定</button>
+            </nz-form-control>
+          </nz-form-item>
+        </form>
+    </nz-collapse-panel>
+</nz-collapse>

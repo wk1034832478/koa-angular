@@ -1,0 +1,67 @@
+<nz-upload *ngIf='basicInfo && basicInfo.account' nzType="drag" [nzName]="'photo'" [nzSize]='1024*10' nzFileType='image/png,image/jpeg,image/gif' [nzData]="{ id: account.id}" [nzMultiple]="true" [nzLimit]="1" nzAction="/api/basic/photo-upload"
+  (nzChange)="handleChange($event)">
+  <p class="ant-upload-drag-icon">
+    <i nz-icon type="inbox"></i>
+  </p>
+  <p class="ant-upload-text">拖拽文件到此处或点击该处上传头像</p>
+  <p class="ant-upload-hint">请上传小于10M的图片文件，支持, *.png、*.jpg、*.gif格式的文件</p>
+</nz-upload>
+
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()" style='margin: 0 auto;'>
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="name">姓名</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="name" id="name" [(ngModel)]='basicInfo.name'>
+      <nz-form-explain *ngIf="validateForm.get('name').dirty && validateForm.get('name').errors">请输入有效的姓名</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="age" nzRequired>年龄</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input type="number" id="age" formControlName="age" [(ngModel)]="basicInfo.age">
+      <nz-form-explain *ngIf="validateForm.get('age').dirty && validateForm.get('age').errors">请输入您的年龄</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="gender" nzRequired>性别</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <nz-select id="gender" formControlName="gender" [(ngModel)]='basicInfo.gender' nzPlaceHolder="请选择自己的性别">
+        <nz-option nzValue="男" nzLabel="男"></nz-option>
+        <nz-option nzValue="女" nzLabel="女"></nz-option>
+      </nz-select>
+      <nz-form-explain *ngIf="validateForm.get('gender').dirty && validateForm.get('gender').errors">请选择自己的性别</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="hometown" nzRequired>家乡</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input id="hometown" formControlName="hometown" placeholder="hometown" [(ngModel)]='basicInfo.hometown'>
+      <nz-form-explain *ngIf="validateForm.get('hometown').dirty && validateForm.get('hometown').errors">请输入您的家乡</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24">生日</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" nzValidateStatus="success" nzHasFeedback>
+      <nz-date-picker [nzFormat]='dateFormat' [(ngModel)]='basicInfo.birthday' name="date-picker-success"
+        formControlName="birthday" style="width: 100%"></nz-date-picker>
+    </nz-form-control>
+  </nz-form-item>
+
+  <!-- 注意ant将一行分为24个格-->
+  <nz-form-item nz-row style="margin-bottom:8px;">
+    <nz-form-control [nzSpan]="12" style='display:flex; justify-content: center;' >
+        <button [nzLoading]="isLoading" nz-button [disabled]='!can || (validateForm.dirty && validateForm.invalid)' nzType="primary">确定</button>
+      </nz-form-control>
+    <nz-form-control [nzSpan]="12" style='display:flex; justify-content: center;' >
+        <button [nzLoading]="isLoading" nz-button (click)='cancel()' nzType="primary">取消</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+<!-- 还没有建立基本的时候，不显示该开关 -->
+<div *ngIf='basicInfo.account' style='display: flex; justify-content: center;'>
+  <nz-switch [(ngModel)]="can" (ngModelChange)='canChange()' nzCheckedChildren="开" nzUnCheckedChildren="关"></nz-switch>
+</div>

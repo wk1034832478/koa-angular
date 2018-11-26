@@ -1,0 +1,16 @@
+<div class='container-horizontal'>
+    <div [ngStyle]="{ width: '300px', border: '1px solid #d9d9d9', borderRadius: '4px' }">
+        <nz-calendar nzCard (nzValueChange)="onValueChange($event)" (nzModeChange)="onModeChange($event)"></nz-calendar>
+    </div>
+    <div class='note'>
+      <p>
+            从现在起，一点一滴来记录你成长中的脚步。
+      </p>
+      <p>
+          我们这里有<a>个人账户管理</a>,<a>工资报表</a>
+      </p>
+    </div>
+</div>
+
+
+

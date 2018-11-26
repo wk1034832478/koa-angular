@@ -1,0 +1,5 @@
+<div class='container'  style="background: rgb(190, 200, 200);padding: 26px 16px 16px;">
+   <button routerLink='/home/hometown/person-account/add' nz-button nzType="default" nzGhost>添加个人账户</button>
+</div>
+<app-search (searchEventEmit)='onsearch($event)' (pageEventEmit)='onPageUpdate($event)'></app-search>
+<app-account-list [isLoading]='isAccountSearch' [accountDistribution]='accountDistribution' [personAccounts]='personAccounts' [page]='page' [accountUsePercent]='accountUsePercent'></app-account-list>

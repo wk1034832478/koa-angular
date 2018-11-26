@@ -1,0 +1,76 @@
+<form nz-form [formGroup]="validateForm" (ngSubmit)="submitForm()">
+
+  <nz-form-item *ngIf= 'isUpdate'>
+      <nz-form-control [nzSm]="14" [nzXs]="24">
+        <input nz-input formControlName="id" type='hidden' id="id" [(ngModel)]='personAccount.id'>
+      </nz-form-control>
+    </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="username">用户名</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="username" placeholder="请输入有效的用户名,4-14位字符" id="username" [(ngModel)]='personAccount.username'>
+      <nz-form-explain *ngIf="validateForm.get('username').dirty && validateForm.get('username').errors">请输入有效的用户名,1-100位字符</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="password">密码</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="password" placeholder="请输入有效的密码,4-14位字符" id="password" [(ngModel)]='personAccount.password'>
+      <nz-form-explain *ngIf="validateForm.get('password').dirty && validateForm.get('password').errors">请输入有效的密码,1-100位字符</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="email">E-mail</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="email" id="email" placeholder="e-mail,如：12345678@qq.com" [(ngModel)]='personAccount.email'>
+      <nz-form-explain *ngIf="validateForm.get('email').dirty && validateForm.get('email').errors">请输入有效的e-mail,如：12345678@qq.com</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24"  nzFor="phonenumber">绑定手机号</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24">
+      <input nz-input formControlName="phonenumber" placeholder="绑定手机号" id="phonenumber" [(ngModel)]='personAccount.phonenumber'>
+      <nz-form-explain *ngIf="validateForm.get('phonenumber').dirty && validateForm.get('phonenumber').errors">请输入有效的11位手机号</nz-form-explain>
+    </nz-form-control>
+  </nz-form-item>
+
+  <nz-form-item>
+    <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired  nzFor="createTime">创建日期</nz-form-label>
+    <nz-form-control [nzSm]="14" [nzXs]="24" >
+      <nz-date-picker [nzFormat]='dateFormat' [(ngModel)]='personAccount.createTime' name="date-picker-success"  formControlName="createTime" style="width: 100%"></nz-date-picker>
+    </nz-form-control>
+</nz-form-item>
+
+<nz-form-item>
+  <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="canUse" nzRequired nzRequired>是否可用</nz-form-label>
+  <nz-form-control [nzSm]="14" [nzXs]="24" >
+    <nz-select id="canUse" formControlName="canUse"  [(ngModel)]='personAccount.canUse' nzPlaceHolder="请选择是否可用" >
+      <nz-option nzValue="yes" nzLabel="可用" ></nz-option>
+      <nz-option nzValue="no" nzLabel="不可用"></nz-option>
+    </nz-select>
+    <nz-form-explain *ngIf="validateForm.get('canUse').dirty && validateForm.get('canUse').errors">请选择是否可用</nz-form-explain>
+  </nz-form-control>
+</nz-form-item>
+
+<nz-form-item *ngIf='personAccountTypes'>
+  <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="personAccountTypeId" nzRequired nzRequired>账号类型</nz-form-label>
+  <nz-form-control [nzSm]="14" [nzXs]="24" >
+    <nz-select id="personAccountTypeId" formControlName="personAccountTypeId"  [(ngModel)]='personAccount.personAccountGeneralType.id' nzPlaceHolder="账号类型" >
+      <nz-option *ngFor='let type of personAccountTypes' [nzValue]="type.id" [nzLabel]="type.name" ></nz-option>
+    </nz-select>
+    <nz-form-explain *ngIf="validateForm.get('personAccountTypeId').dirty && validateForm.get('personAccountTypeId').errors">账号类型</nz-form-explain>
+  </nz-form-control>
+</nz-form-item>
+  
+  <nz-form-item nz-row style="margin-bottom:8px;display: flex; justify-content: center;" *ngIf= '!isUpdate'>
+    <nz-form-control [nzSpan]="7"  style='text-align: center;' >
+      <button  [nzLoading]="isLoading" nz-button [disabled]='validateForm.invalid' nzType="primary">确定</button>
+    </nz-form-control>
+  </nz-form-item>
+</form>
+
+

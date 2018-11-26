@@ -1,0 +1,10 @@
+<div *ngIf='items' >
+    <nz-steps nzProgressDot [nzCurrent]="current">
+        <nz-step *ngFor='let item of items' nzTitle="{{item.title}}" nzDescription="{{item.status}}"></nz-step>
+    </nz-steps>
+</div>
+
+
+
+
+  

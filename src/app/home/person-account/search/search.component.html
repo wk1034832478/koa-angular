@@ -1,0 +1,16 @@
+<div class="example-input">
+    <nz-input-group nzSearch nzSize="large" [nzSuffix]="suffixIconButton">
+      <input placeholder="搜索个人账号" nz-input [(ngModel)]="inputValue" (ngModelChange)="onChange($event)" [nzAutocomplete]="auto"/>
+    </nz-input-group>
+    <ng-template #suffixIconButton>
+      <button [nzLoading]='isLoading' (click)='search()' nz-button  nzType="primary" nzSize="large" nzSearch><i nz-icon type="search" theme="outline"></i></button>
+    </ng-template>
+    <nz-autocomplete #auto>
+      <nz-auto-option *ngFor="let option of options" [nzValue]="option.value">
+        {{option.category}} 分类中含有
+        <a (click)='search()'> {{option.value}} </a>
+        
+        <span class="global-search-item-count">约 {{option.count}} 个结果</span>
+      </nz-auto-option>
+    </nz-autocomplete>
+</div>
