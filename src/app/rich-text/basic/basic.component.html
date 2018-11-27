@@ -1,0 +1,20 @@
+<!--预览-->
+<button nz-button nzType="primary" (click)="previewHtml(tplTitle, tplContent, tplFooter)">
+        <span>预览</span>
+</button>
+
+<div id='rich-text-container'>
+</div>
+<quill-editor [placeholder]='placeholder' (onContentChanged)='onContentChanged($event)' [bounds]='conatiner' [style]='style'
+    [(ngModel)]="editorContent"></quill-editor>
+
+<ng-template #tplTitle>
+    <span>预览信息</span>
+</ng-template>
+<ng-template #tplContent>
+        <div id='preview'></div>
+</ng-template>
+<ng-template #tplFooter>
+    <button nz-button nzType="primary" (click)="cancel()" >确定</button>
+</ng-template>
+<!--预览结束-->

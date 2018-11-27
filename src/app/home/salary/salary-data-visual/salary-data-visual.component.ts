@@ -34,7 +34,6 @@ export class SalaryDataVisualComponent implements OnInit {
         this.isLoading = false;
         if ( res.code === ResponseCode.SUCCESS) {
           // 开始加载数据
-          this.loggerService.log( this, `数据下载完成，${ res.object }`);
           try {
             this.loadData( res.object );
           } catch ( e ) {
@@ -59,7 +58,6 @@ export class SalaryDataVisualComponent implements OnInit {
   }
 
   loadData( salaries:  Salary[] ) {
-    this.loggerService.log( this, `开始解析数据,数据项：${salaries.length}`);
     this.data = [];
     this.fields = [];
     for (let i = 0; i < salaries.length; i++) {
@@ -101,7 +99,6 @@ export class SalaryDataVisualComponent implements OnInit {
         }
       }
     }
-    this.loggerService.log( this, `数据加载完成，${this.data}`);
   }
 
   sort( date1: string, date2: string ) {

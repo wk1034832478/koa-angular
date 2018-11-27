@@ -28,6 +28,7 @@ import { Router } from '@angular/router';
 export class RegistryComponent implements OnInit {
   validateForm: FormGroup;
   isLoading: boolean;
+  isSending: boolean;
   tplModal: NzModalRef;
   tplModalButtonLoading = false;
   htmlModalVisible = false;
@@ -56,11 +57,11 @@ export class RegistryComponent implements OnInit {
       phonenumber: [null, [ Validators.pattern('^[0-9]{11}$') ]],
       captureCode: [ null, [  ]], // Validators.required, Validators.pattern( '^[0-9]{4,6}$' ) 测试阶段，暂关闭验证码拦截
       isPassCaptureCode: [ null , [ Validators.required, Validators.pattern('^1$')] ],
-      isLogin: [ false, [] ]
+      isLogin: [ true, [] ]
     });
     this.validateForm.addControl( 'passwordValidate' ,
     new FormControl(  null, [ Validators.required, this.equalPasswordValidator()]  )  );
-    this.isPassCaptureCode = 1;
+    this.isPassCaptureCode = 0;
   }
 
   equalPasswordValidator( ): ValidatorFn {
@@ -94,8 +95,10 @@ export class RegistryComponent implements OnInit {
       this.tipService.tip( '请先输入正确的手机号' );
       return;
     }
+    this.isSending = true;
     this.messageService.generateCaptureCode( this.account.phonenumber ).then(
        res => {
+        this.isSending = false;
          if ( res.code === ResponseCode.SUCCESS ) {
             // 打开弹窗
             this.createTplModal(this.tplTitle, this.tplContent, this.tplFooter);
@@ -105,6 +108,7 @@ export class RegistryComponent implements OnInit {
        }
     ).catch(
         () => {
+          this.isSending = false;
           this.tipService.tip( '网络故障' );
         }
     );
@@ -127,9 +131,11 @@ export class RegistryComponent implements OnInit {
   }
 
   saveOrUpdate() {
-    this.accountService.saveOrUpdate( this.account )
+    this.isLoading = true;
+    this.accountService.saveOrUpdate( this.account, this.validateForm.controls[ 'isLogin' ].value )
     .then(
       res => {
+        this.isLoading = false;
         if ( res.code === ResponseCode.SUCCESS ) {
           this.tipService.tip( '创建成功' );
           if ( this.validateForm.controls[ 'isLogin' ].value ) { // 自动登录，跳转至主页，否则进入登录页面
@@ -142,6 +148,7 @@ export class RegistryComponent implements OnInit {
         }
       }
     ).catch( () => {
+      this.isLoading = false;
       this.tipService.tip( '网络故障' );
     });
   }

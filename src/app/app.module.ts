@@ -11,6 +11,7 @@ import { FormsModule } from '@angular/forms';
 import { WelcomeComponent } from './welcome/welcome.component';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
+import { HtmlPipe } from './pipies/html.pipe';
 
 registerLocaleData(zh);
 @NgModule({
@@ -18,6 +19,7 @@ registerLocaleData(zh);
     AppComponent,
     LoginComponent,
     WelcomeComponent,
+    HtmlPipe
   ],
   imports: [
     BrowserModule,
@@ -33,6 +35,7 @@ registerLocaleData(zh);
     FormsModule,
     NgZorroAntdModule,
     ReactiveFormsModule,
+    HtmlPipe,
   ],
    /** 配置 ng-zorro-antd 国际化 **/
   providers: [ { provide: NZ_I18N, useValue: zh_CN }],

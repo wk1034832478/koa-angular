@@ -1,0 +1,24 @@
+<div class='demo-infinite-container'
+  infiniteScroll [infiniteScrollDistance]="2"
+  [infiniteScrollThrottle]="50"
+  (scrolled)="onScroll()"
+  [scrollWindow]="false">
+    <nz-list  style='min-height: 400px;' [nzLoading]='isLoading' [nzDataSource]="personDynamic" nzBordered [nzHeader]="header" [nzRenderItem]="item">
+        <ng-template #item let-item>
+          <nz-list-item style='display: flex; flex-direction: column;'>
+            <!--头像-->
+            <div style='width: 100%; text-align: left'>
+              <nz-avatar nzSize="large" nzIcon="anticon anticon-user"></nz-avatar> <a> {{ item.title}} </a>
+            </div>
+            <!--内容-->
+            <div [innerHTML]='item.contentOfRichText  '>
+            </div>
+            <!--评论及点赞-->
+            <div>
+      
+            </div>
+          </nz-list-item>
+        </ng-template>
+      </nz-list>
+</div>
+

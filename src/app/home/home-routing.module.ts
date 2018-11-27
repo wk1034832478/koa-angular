@@ -21,6 +21,10 @@ const routes: Routes = [
         loadChildren: './salary/salary.module#SalaryModule'
       },
       {
+        path: 'social-contact',
+        loadChildren: './social-contact/social-contact.module#SocialContactModule'
+      },
+      {
         path: 'main',
         component: MainComponent
       },

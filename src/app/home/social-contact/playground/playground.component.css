@@ -1,0 +1,12 @@
+:host ::ng-deep .demo-infinite-container {
+    border-radius: 4px;
+    overflow: auto;
+    padding: 8px 24px;
+    min-height: 600px;
+    max-height: 1000px;
+  }
+  :host ::ng-deep .demo-loading {
+    position: absolute;
+    bottom: -40px;
+    left: 50%;
+  }

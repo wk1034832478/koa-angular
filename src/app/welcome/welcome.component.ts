@@ -7,7 +7,7 @@ import { Component, OnInit } from '@angular/core';
   styles  : [
     `[nz-carousel-content] {
     text-align: center;
-    height: ${window.innerHeight}px;
+    height: 100%;
     line-height: 160px;
     background: #364d79;
     color: #fff;
@@ -18,11 +18,11 @@ import { Component, OnInit } from '@angular/core';
   }
   ,
   .gs {
-    height: ${window.innerHeight}px;
+    height: 100%;
     width: ${window.innerWidth}px;
   },
   .carousel-buttons{
-    height: ${window.innerHeight}px;
+    height: 100%;
     width: ${window.innerWidth}px;
     position: absolute;
     left: 0px;

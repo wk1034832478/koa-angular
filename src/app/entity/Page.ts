@@ -3,8 +3,22 @@ export class Page {
     public static SIZE_NAME = 'pageSize';
     private index?: number;
     private size?: number;
+    private totalElements: number; // 总元素数量
+    private totalPages: number; // 总页的数量
     constructor() {
         this.reset();
+    }
+    get _totalPages() {
+        return this.totalPages;
+    }
+    set _totalPages( totalPages: number ) {
+        this.totalPages = totalPages;
+    }
+    get _totalElements() {
+        return this.totalElements;
+    }
+    set _totalElements( totalElements: number ) {
+        this.totalElements = totalElements;
     }
     get _index() {
         return this.index;
@@ -22,8 +36,8 @@ export class Page {
      * 判断当前是否与下一页
      * @param size 当期获取的条目数
      */
-    hasNext( size: number ) {
-        return size >= this.size;
+    hasNext(  ) {
+        return this._index < this.totalPages - 1;
     }
     next() {
         this.index++;
@@ -38,6 +52,6 @@ export class Page {
     }
     reset( ) {
         this.index = 0;
-        this.size = 20;
+        this.size = 10;
     }
 }

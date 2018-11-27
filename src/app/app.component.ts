@@ -1,13 +1,13 @@
 import { Component, OnInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { trigger, transition, animate, style, query, group, state, keyframes } from '@angular/animations';
-
+// 全局路由动画
 export const routeAnimation =
   trigger('routeAnimation', [
     transition('* => *', [
       query('#stone.stone', [
         group([
-          animate('1ms', style( { height: '2.5px'} ) ),
+          animate('1ms', style( { height: '1.5px'} ) ),
           animate('1s', keyframes ([
             style( { background: '#096dd9', opacity: 0.4, offset: 0.1 }),
             style( { background: 'green', opacity: 0.7, offset: 0.4 }),
@@ -24,9 +24,8 @@ export const routeAnimation =
   styleUrls: ['./app.component.css'],
   styles: [
     `
-    html,body{ height: ${window.innerHeight}px; }
     #app{
-      height: ${window.innerHeight}px;
+      height: 100%;
     }
     `
   ],

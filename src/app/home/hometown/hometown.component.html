@@ -24,12 +24,21 @@
       </ul>
       <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
           <li nz-submenu>
-            <span title><i nz-icon type="team"></i><span class="nav-text">工资信息管理</span></span>
+            <span title><i nz-icon type="money-collect" theme="outline"></i><span class="nav-text">工资信息管理</span></span>
             <ul>
               <li nz-menu-item><a routerLink='salary/main'>薪水及报表</a></li>
             </ul>
           </li>
-        </ul>
+      </ul>
+      <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+          <li nz-submenu>
+            <span title><i nz-icon type="money-collect" theme="outline"></i><span class="nav-text">娱乐广场</span></span>
+            <ul>
+              <li nz-menu-item><a routerLink='social-contact/main'>发表动态</a></li>
+              <li nz-menu-item><a routerLink='social-contact/playground'>广场动态</a></li>
+            </ul>
+          </li>
+      </ul>
       <div class='item-column item'>
           <button nz-button nzType="primary" (click)="logout()" [nzLoading]="isLogouting">注销</button>
       </div>
@@ -39,11 +48,11 @@
         <i class="trigger" nz-icon [type]="isCollapsed?'menu-unfold':'menu-fold'" (click)="isCollapsed=!isCollapsed"></i>
       </nz-header>
       <nz-content style="margin:0 16px;">
-        <nz-breadcrumb style="margin:16px 0;">
-          <!--导航指南-->
+        <!-- <nz-breadcrumb style="margin:16px 0;">
+          导航指南
           <nz-breadcrumb-item>User</nz-breadcrumb-item>
           <nz-breadcrumb-item>Bill</nz-breadcrumb-item>
-        </nz-breadcrumb>
+        </nz-breadcrumb> -->
         <div style="padding:24px; background: #fff; min-height: 360px;">
           <!--路由主出口-->
           <router-outlet></router-outlet>

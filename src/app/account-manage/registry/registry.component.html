@@ -35,14 +35,6 @@
       </nz-form-control>
     </nz-form-item>
 
-    <nz-form-item>
-      <nz-form-control>
-        <nz-input-group >
-          <input type="text" nz-input   formControlName="isPassCaptureCode" placeholder="验证验证码" [(ngModel)]='isPassCaptureCode'>
-        </nz-input-group>
-      </nz-form-control>
-    </nz-form-item>
-
     <!--弹窗-->
     <ng-template #tplTitle>
       <span>验证码</span>
@@ -61,7 +53,7 @@
 
     <nz-form-item>
       <nz-form-control>
-        <button nz-button [nzLoading]='isLoading' class="registry-form-button" (click)="sendCaptureCode()" [nzType]="'primary'">发送验证码</button>
+        <button nz-button [nzLoading]='isSending' class="registry-form-button" (click)="sendCaptureCode()" [nzType]="'primary'">发送验证码</button>
       </nz-form-control>
     </nz-form-item>
 
@@ -75,10 +67,19 @@
     
     <nz-form-item>
       <nz-form-control [nzSpan]="12" style='display:flex; justify-content: center;' >
-          <button [disabled]='validateForm.invalid || validateForm.errors' nz-button class="registry-form-button" [nzType]="'primary'" (click)='saveOrUpdate(account)'>注册</button>
+          <button [disabled]='validateForm.invalid || validateForm.errors' nz-button class="registry-form-button" [nzType]="'primary'" (click)='saveOrUpdate()'>注册</button>
         </nz-form-control>
       <nz-form-control [nzSpan]="12" style='display:flex; justify-content: center;' >
           <button nz-button class="registry-form-button" [nzType]="'primary'" routerLink='/welcome'>返回</button>
+      </nz-form-control>
+    </nz-form-item>
+
+
+    <nz-form-item>
+      <nz-form-control>
+        <nz-input-group >
+          <input type="hidden" nz-input   formControlName="isPassCaptureCode" placeholder="验证验证码" [(ngModel)]='isPassCaptureCode'>
+        </nz-input-group>
       </nz-form-control>
     </nz-form-item>
   </form>

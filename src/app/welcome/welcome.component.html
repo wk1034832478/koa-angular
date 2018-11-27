@@ -9,14 +9,6 @@
   </div>
 </div>
 
-
-<!--抽屉-导航 取消导航位置-->
-<!-- <nz-radio-group [(ngModel)]="placement">
-  <label nz-radio nzValue="top">top</label>
-  <label nz-radio nzValue="right">right</label>
-  <label nz-radio nzValue="bottom">bottom</label>
-  <label nz-radio nzValue="left">left</label>
-</nz-radio-group> -->
 <nz-drawer nzWidth='128px' [nzClosable]="false" [nzVisible]="visible"
  [nzPlacement]="placement"  (nzOnClose)="close()">
   <div *ngFor='let menu of menues' class='menu' style='display: flex; justify-content: center; align-items: center; flex-direction: column;'>

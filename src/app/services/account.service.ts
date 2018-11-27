@@ -10,9 +10,12 @@ export class AccountService extends ServiceParent {
 
   constructor( private http2: HttpClient ) { super( http2 ); }
 
-  saveOrUpdate( account: Account ) {
-    const params = new HttpParams().append( 'username', account.username ).append('password', account.password)
+  saveOrUpdate( account: Account, isLogin = false ) {
+    let params = new HttpParams().append( 'username', account.username ).append('password', account.password)
     .append('phonenumber', account.phonenumber);
+    if ( !isLogin ) {
+        params = params.append('isLogin', `${isLogin}`);
+    }
     return this.post( '/api/account/save', this.jsonHeader, params );
   }
 }

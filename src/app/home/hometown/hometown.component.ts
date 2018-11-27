@@ -58,7 +58,7 @@ export class HometownComponent implements OnInit {
   }
 
   goto() {
-    this.router.navigate(['salary'], { relativeTo: this.route });
+    this.router.navigate(['social-contact'], { relativeTo: this.route });
   }
 
   /** custom trigger can be TemplateRef **/

@@ -1,0 +1,28 @@
+<form nz-form [formGroup]="validateForm" style='margin: 0 auto;'>
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzRequired nzFor="title">标题</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <input nz-input formControlName="title" placeholder="请输入标题" id="title" [(ngModel)]='personDynamic.title'>
+            <nz-form-explain *ngIf="validateForm.get('title').dirty && validateForm.get('title').errors">请输入有效的标题，最少为2位字符</nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+
+    <nz-form-item>
+        <nz-form-label [nzSm]="6" [nzXs]="24" nzFor="watchPriority" nzRequired>权限</nz-form-label>
+        <nz-form-control [nzSm]="14" [nzXs]="24">
+            <nz-select id="watchPriority" formControlName="watchPriority" [(ngModel)]='personDynamic.watchPriority' nzPlaceHolder="请选择自己权限">
+                <nz-option *ngFor='let priority of priorities' [nzValue]="priority" [nzLabel]="priority"></nz-option>
+            </nz-select>
+            <nz-form-explain *ngIf="validateForm.get('watchPriority').dirty && validateForm.get('watchPriority').errors">请选择权限</nz-form-explain>
+        </nz-form-control>
+    </nz-form-item>
+
+    <app-rich-text-basic (quillEventEmitter)='onvaluechange($event)'></app-rich-text-basic>
+
+    <!-- 注意ant将一行分为24个格-->
+    <nz-form-item nz-row style="margin-bottom:8px;">
+        <nz-form-control [nzSpan]="24" style='display:flex; justify-content: center;'>
+            <button [nzLoading]="isLoading" [disabled]=' validateForm.invalid ' nz-button (click)='submitForm()' nzType="primary">发表</button>
+        </nz-form-control>
+    </nz-form-item>
+</form>

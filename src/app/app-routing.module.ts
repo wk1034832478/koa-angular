@@ -11,7 +11,7 @@ const routes: Routes = [
   },
   {
     path: 'home',
-    canActivate: [UserAuthGuardGuard],
+    canActivate: [UserAuthGuardGuard], // 开发期间关闭该守卫
     loadChildren: './home/home.module#HomeModule'
   },
   {
