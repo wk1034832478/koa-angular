@@ -1,15 +1,14 @@
 
 
-import { ApplicationManage } from './application.manage';
-import { ServiceParent } from './service.parent';
+import { ApplicationManage } from '../../../services/application.manage';
+import { ServiceParent } from '../../../services/service.parent';
 import { HttpParams, HttpClient } from '@angular/common/http';
-import { ResponseMessage } from '../response/ResponseMessage';
+import { ResponseMessage } from '../../../response/ResponseMessage';
+import { Page } from '../../../entity/Page';
+import { PersonAccount } from '../../../entity/PersonAccount';
+import { PersonAccountModule } from '../person-account.module';
 import { Injectable } from '@angular/core';
-import { Page } from '../entity/Page';
-import { PersonAccount } from '../entity/PersonAccount';
-@Injectable({
-  providedIn: 'root'
-})
+@Injectable()
 export class PersonAccountService extends ServiceParent {
     constructor(private http2: HttpClient, private applicationManage: ApplicationManage) { super(http2); }
 

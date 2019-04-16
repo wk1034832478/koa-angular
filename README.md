@@ -1,5 +1,20 @@
 # Koa
 
+# 优化措施
+1.  将服务从应用级分散到模块级，不需要的模块不适用必须要加载的服务！
+    也就是更改
+    @Injectable({
+        providedIn: 'root'
+    })
+    为：
+    @Injectable({
+        providedIn: ModuleName
+    })
+2. 继续细分模块，将首次没有必要加载的模块化成单独的模块，加速并方便以后进行扩展
+3. 抽取公共模块
+4. 去除不需要的模块，比如：浏览器动画模块 
+5. 服务器启动压缩程序
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 7.0.6.
 
 ## Development server

@@ -2,11 +2,11 @@ import { NgModule } from '@angular/core';
 import { Routes, RouterModule } from '@angular/router';
 import { LoginComponent } from './auth/login/login.component';
 import { UserAuthGuardGuard } from './auth/user-auth-guard.guard';
-import { WelcomeComponent } from './welcome/welcome.component';
 
 const routes: Routes = [
   {
     path: 'auth',
+    canActivate: [UserAuthGuardGuard], // 开发期间关闭该守卫
     component: LoginComponent
   },
   {
@@ -20,7 +20,7 @@ const routes: Routes = [
   },
   {
     path: 'welcome',
-    component: WelcomeComponent
+    loadChildren:  './welcome/welcome.module#WelcomeModule'
   },
   {
     path: '',

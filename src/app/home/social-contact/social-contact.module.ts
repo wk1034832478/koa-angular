@@ -1,30 +1,27 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { SocialContactRoutingModule } from './social-contact.routing,module';
 import { MainComponent } from './main/main.component';
 import { RichTextModule } from 'src/app/rich-text/rich-text.module';
 import { PlaygroundComponent } from './playground/playground.component';
-import { NgZorroAntdModule } from 'ng-zorro-antd';
-import { ReactiveFormsModule } from '@angular/forms'; // 响应式表单
-import { FormsModule } from '@angular/forms';
 import { InfiniteScrollModule } from 'ngx-infinite-scroll';
-
+import { ShareModule } from '../../share/share.module';
+import { SocialContactService } from './services/social-contact.service';
 @NgModule({
   declarations: [
     MainComponent,
     PlaygroundComponent,
   ],
   imports: [
-    CommonModule,
-    FormsModule,
-    ReactiveFormsModule,
-    NgZorroAntdModule,
+    ShareModule,
     SocialContactRoutingModule,
     RichTextModule,
     InfiniteScrollModule,
   ],
   exports: [
     MainComponent,
+  ],
+  providers:[
+    SocialContactService
   ]
 })
 export class SocialContactModule { }

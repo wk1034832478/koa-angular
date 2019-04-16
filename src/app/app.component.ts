@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, AfterContentInit } from '@angular/core';
 import { Router, NavigationEnd } from '@angular/router';
 import { trigger, transition, animate, style, query, group, state, keyframes } from '@angular/animations';
 // 全局路由动画
@@ -33,7 +33,8 @@ export const routeAnimation =
     routeAnimation
   ]
 })
-export class AppComponent implements OnInit {
+export class AppComponent implements OnInit, AfterContentInit {
+  show = true;
   title = 'koa';
   // router跳转动画所需参数
   routerState = true;
@@ -47,5 +48,8 @@ export class AppComponent implements OnInit {
       this.routerStateCode = this.routerState ? 'active' : 'inactive';
       }
     });
+  }
+
+  ngAfterContentInit() {
   }
 }

@@ -1,7 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { WorkCompany } from 'src/app/entity/WorkCompany';
-import { SalaryService } from 'src/app/services/salary.service';
+import { SalaryService } from 'src/app/home/salary/services/salary.service';
 import { ApplicationManage } from 'src/app/services/application.manage';
 import { ResponseCode } from 'src/app/response/ResponseCode';
 import { TipService } from 'src/app/services/tip.service';

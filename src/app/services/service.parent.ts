@@ -1,7 +1,7 @@
 import { HttpClient, HttpHeaders, HttpParams } from '@angular/common/http';
 import { retry } from 'rxjs/operators';
 import { ResponseMessage } from '../response/ResponseMessage';
-
+import { Observable } from 'rxjs';
 export class ServiceParent {
     /**
      * 公共头部
@@ -32,4 +32,13 @@ export class ServiceParent {
     const params = new HttpParams().append('id', `${id}`);
     return this.post( url , this.jsonHeader, params);
   }
+
+  /**
+   * 查询函数组装在url当中
+   * @param url 请求url
+   */
+  getByUrl( url: string ): Observable<ResponseMessage> {
+    return this.http.get( url, { headers: this.jsonHeader });
+  }
+
 }

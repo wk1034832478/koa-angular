@@ -25,12 +25,17 @@ const routes: Routes = [
         loadChildren: './social-contact/social-contact.module#SocialContactModule'
       },
       {
+        path: 'unity',
+        loadChildren: './unity/unity.module#UnityModule'
+      },
+      {
         path: 'main',
         component: MainComponent
       },
       {
         path: '',
-        component: MainComponent
+        //component: MainComponent
+        loadChildren: './unity/unity.module#UnityModule'
       }
     ]
   },

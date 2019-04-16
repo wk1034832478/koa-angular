@@ -1,6 +1,6 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
 import { ResponseMessage } from 'src/app/response/ResponseMessage';
-import { PersonAccountService } from 'src/app/services/person.account.service';
+import { PersonAccountService } from 'src/app/home/person-account/services/person.account.service';
 import { ResponseCode } from 'src/app/response/ResponseCode';
 import { TipService } from 'src/app/services/tip.service';
 import { Page } from 'src/app/entity/Page';

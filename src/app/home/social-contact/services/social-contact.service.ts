@@ -1,12 +1,9 @@
-import { Injectable } from '@angular/core';
-import { ServiceParent } from './service.parent';
+import { ServiceParent } from '../../../services/service.parent';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ResponseMessage } from '../response/ResponseMessage';
-import { PersonDynamic } from '../entity/PersonDynamic';
-
-@Injectable({
-  providedIn: 'root'
-})
+import { ResponseMessage } from '../../../response/ResponseMessage';
+import { PersonDynamic } from '../../../entity/PersonDynamic';
+import { Injectable } from '@angular/core';
+@Injectable()
 export class SocialContactService extends ServiceParent {
 
   constructor(private http2: HttpClient) { super( http2 ); }

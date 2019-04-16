@@ -39,6 +39,15 @@
             </ul>
           </li>
       </ul>
+      <ul nz-menu [nzTheme]="'dark'" [nzMode]="'inline'" [nzInlineCollapsed]="isCollapsed">
+        <li nz-submenu>
+          <span title><i nz-icon type="money-collect" theme="outline"></i><span class="nav-text">unity程序</span></span>
+          <ul>
+            <li nz-menu-item><a routerLink='unity/dashboard'>仪表板</a></li>
+            <li nz-menu-item><a routerLink='unity/upload'>程序上传</a></li>
+          </ul>
+        </li>
+    </ul>
       <div class='item-column item'>
           <button nz-button nzType="primary" (click)="logout()" [nzLoading]="isLogouting">注销</button>
       </div>

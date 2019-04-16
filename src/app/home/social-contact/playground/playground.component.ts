@@ -2,7 +2,7 @@ import { Component, OnInit, AfterViewInit } from '@angular/core';
 import { PersonDynamic } from 'src/app/entity/PersonDynamic';
 import { ApplicationManage } from 'src/app/services/application.manage';
 import { Page } from 'src/app/entity/Page';
-import { SocialContactService } from 'src/app/services/social-contact.service';
+import { SocialContactService } from '../services/social-contact.service';
 import { TipService } from 'src/app/services/tip.service';
 import { ResponseCode } from 'src/app/response/ResponseCode';
 import { PageMessage } from 'src/app/response/PageMessage';

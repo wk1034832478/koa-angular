@@ -1,0 +1,16 @@
+<!-- tomcat状态信息-->
+<div></div>
+<!--显示项目列表-->
+<h4 style="margin-bottom: 16px;">当前tomcat项目:</h4>
+<div>
+    
+    <nz-alert nzType="info" nzMessage="刚上传的项目需要短暂的加载时间，如果没有出现，请稍后刷新尝试！" nzCloseText="关闭"></nz-alert>
+    <ng-container  *ngFor='let app of appnames'   >
+      <nz-tag *ngIf='app.show'  (click)='showModal( app.name )' [nzColor]="app.color">{{ app.name }}</nz-tag>
+    </ng-container>
+    
+</div>
+
+<nz-modal [(nzVisible)]="isVisible" nzTitle="提示" (nzOnCancel)="handleCancel()" (nzOnOk)="handleDelete()">
+    <p>确定要删除 {{ deletedProjectName }}</p>
+</nz-modal>

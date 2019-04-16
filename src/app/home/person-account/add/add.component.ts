@@ -4,7 +4,7 @@ import { ApplicationManage } from 'src/app/services/application.manage';
 import { FormGroup, FormControl, FormBuilder, Validators, AbstractControl, ValidatorFn } from '@angular/forms';
 import { registerLocaleData } from '@angular/common';
 import zh from '@angular/common/locales/zh';
-import { PersonAccountService } from 'src/app/services/person.account.service';
+import { PersonAccountService } from 'src/app/home/person-account/services/person.account.service';
 import { TipService } from 'src/app/services/tip.service';
 import { ResponseCode } from 'src/app/response/ResponseCode';
 import { PersonAccountGeneralType } from 'src/app/entity/PersonAccountGeneralType';

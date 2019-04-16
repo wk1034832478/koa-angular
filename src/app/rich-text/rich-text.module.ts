@@ -1,17 +1,15 @@
 import { NgModule } from '@angular/core';
-import { CommonModule } from '@angular/common';
 import { BasicComponent } from './basic/basic.component';
 import { RichTextRoutingModule } from './rich-text.routing.module';
 import { QuillModule } from 'ngx-quill';
-import { FormsModule } from '@angular/forms';
-import { NgZorroAntdModule  } from 'ng-zorro-antd';
+import { ShareModule } from '../share/share.module';
+
 @NgModule({
   declarations: [
     BasicComponent
   ],
   imports: [
-    CommonModule,
-    FormsModule,
+    ShareModule,
     RichTextRoutingModule,
     QuillModule.forRoot(
       {
@@ -35,7 +33,6 @@ import { NgZorroAntdModule  } from 'ng-zorro-antd';
         },
       },
     ),
-    NgZorroAntdModule,
   ],
   exports: [
     QuillModule,

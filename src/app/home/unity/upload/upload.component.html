@@ -1,0 +1,8 @@
+<nz-upload [nzBeforeUpload]="beforeUpload" (nzChange)="handleChange($event)"  nzType="drag" [nzName]="filename"   [nzMultiple]="true" [nzLimit]="1" [nzAction]="url"
+  >
+  <p class="ant-upload-drag-icon">
+    <i nz-icon type="inbox"></i>
+  </p>
+  <p class="ant-upload-text">拖拽文件到此处或点击该处上传unity程序war包</p>
+  <p class="ant-upload-hint">仅支持war格式的压缩包！</p>
+</nz-upload>

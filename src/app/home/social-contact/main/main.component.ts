@@ -3,7 +3,7 @@ import { LoggerService } from 'src/app/services/logger.service';
 import { ApplicationManage } from 'src/app/services/application.manage';
 import { PersonDynamic } from 'src/app/entity/PersonDynamic';
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
-import { SocialContactService } from 'src/app/services/social-contact.service';
+import { SocialContactService } from '../services/social-contact.service';
 import { TipService } from 'src/app/services/tip.service';
 import { ResponseCode } from 'src/app/response/ResponseCode';
 

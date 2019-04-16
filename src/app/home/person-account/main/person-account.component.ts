@@ -2,7 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { Page } from 'src/app/entity/Page';
 import { LoggerService } from 'src/app/services/logger.service';
 import { PersonAccount } from 'src/app/entity/PersonAccount';
-import { PersonAccountService } from 'src/app/services/person.account.service';
+import { PersonAccountService } from 'src/app/home/person-account/services/person.account.service';
 import { ApplicationManage } from 'src/app/services/application.manage';
 import { ResponseCode } from 'src/app/response/ResponseCode';
 import { TipService } from 'src/app/services/tip.service';

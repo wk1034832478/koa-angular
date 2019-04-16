@@ -29,9 +29,10 @@ export class UserAuthGuardGuard implements CanActivate {
             const promise: Promise<any> = this.loadUserInfo( );
             promise.then( () => {
               resolve1(true);
+              this.clearIndexAnimation();
               this.tipService.tip( `获取信息成功！`);
               if ( this.applicationManage._basicInfo === null ) { // 补全身份信息
-
+                
               }
             }).catch( () => {
               this.tipService.tip( `获取信息失败`);
@@ -39,6 +40,7 @@ export class UserAuthGuardGuard implements CanActivate {
           } else { // 未登陆
             this.loggerSerivce.log(this, '用户还未登陆' );
             resolve1(false);
+            this.clearIndexAnimation();
             // 导航至登陆页面
             this.router.navigate(['auth']);
           }
@@ -47,6 +49,13 @@ export class UserAuthGuardGuard implements CanActivate {
           reject2(false);
         });
       });
+  }
+
+  clearIndexAnimation() {
+    let loading= document.getElementById( 'loading' );
+    if ( loading ) {
+      loading.remove();
+    }
   }
 
     /**

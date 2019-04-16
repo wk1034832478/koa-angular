@@ -1,13 +1,10 @@
 import { Injectable } from '@angular/core';
-import { ServiceParent } from './service.parent';
+import { ServiceParent } from '../../../services/service.parent';
 import { HttpClient, HttpParams } from '@angular/common/http';
-import { ResponseMessage } from '../response/ResponseMessage';
-import { WorkCompany } from '../entity/WorkCompany';
-import { Salary } from '../entity/Salary';
-
-@Injectable({
-  providedIn: 'root'
-})
+import { ResponseMessage } from '../../../response/ResponseMessage';
+import { WorkCompany } from '../../../entity/WorkCompany';
+import { Salary } from '../../../entity/Salary';
+@Injectable()
 export class SalaryService extends ServiceParent {
 
   constructor(private http2: HttpClient) { super(http2); }
